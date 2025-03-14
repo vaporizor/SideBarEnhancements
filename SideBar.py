@@ -1012,6 +1012,26 @@ class SideBarMoveCommand(sublime_plugin.WindowCommand):
         )
 
 
+class SideBarDragCommand(sublime_plugin.WindowCommand):
+    items = None
+
+    def run(self, paths=[]):
+        if self.items is None and len(paths) > 0:
+            self.items = paths
+        elif len(paths) == 1:
+            dir_ = paths[0]
+            if not os.path.isdir(dir_):
+                dir_ = os.path.abspath(os.path.join(dir_, os.pardir))
+            for item in self.items:
+                if os.path.exists(item):
+                    dest = os.path.join(dir_, os.path.split(item)[1])
+                    SideBarMoveThread(item, dest, "move-" + str(time.time())).start()
+            self.items = None
+
+    def is_enabled(self, paths=[]):
+        return CACHED_SELECTION(paths).hasProjectDirectories() is False
+
+
 class SideBarMoveThread(threading.Thread):
     def __init__(self, old, new, key):
         self.old = old

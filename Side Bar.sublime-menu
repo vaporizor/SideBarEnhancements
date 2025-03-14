@@ -125,6 +125,12 @@
 		"args": { "paths": [] }
 	},
 	{
+		"caption": "Drag / Drop",
+		"id": "side-bar-drag",
+		"command": "side_bar_drag",
+		"args": { "paths": [] }
+	},
+	{
 		"caption": "Mass Rename…",
 		"id": "side-bar-mass-rename",
 		"command": "side_bar_mass_rename",

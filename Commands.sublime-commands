@@ -32,6 +32,10 @@
 		"command": "side_bar_move"
 	},
 	{
+		"caption": "File: Drag / Drop",
+		"command": "side_bar_drag"
+	},
+	{
 		"caption": "File: Delete",
 		"command": "side_bar_delete"
 	},
